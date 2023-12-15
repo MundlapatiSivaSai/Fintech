@@ -1,0 +1,34 @@
+/*This file contains all the ainmation constraints*/
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    padding-top: 30px;
+  }
+  100% {
+    opacity: 1;
+    padding-top: 0px;
+  }
+}
+
+.carousel__info{
+    opacity: 0;
+    animation: fadein 2s ease ;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+.navbar__links{
+    opacity: 0;
+    animation-delay: 1s;
+    animation: fadein 1.5s ease;
+    animation-fill-mode: forwards;
+}
+
+
+.App{
+  opacity: 0;
+  animation: fadein 1s ease;
+  animation-fill-mode: forwards;
+  
+}

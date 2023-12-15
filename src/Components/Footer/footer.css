@@ -1,0 +1,81 @@
+.footer{
+    background: rgba(14,173,105);
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    }
+
+.footer__copyright{
+    border-top: 1px solid white;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer__copyright p{
+    color: rgba(255,255,255,0.9);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.footer__info{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 20px;
+}
+
+.footer__infoContact{
+    flex-basis: 0.65;
+}
+
+.footer__links{
+    flex-basis: 0.35;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__links a{
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    /* margin-top: 10px; */
+}
+
+.footer__links .MuiSvgIcon-root{
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.footer__links h4{
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0px 0px 15px 0px;
+}
+
+.footer__infoContact h3{
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.footer__infoContact p{
+    margin: -5px 0px 20px 0px;
+    color: white;
+    opacity: 0.8;
+}
+
+.footer__infoContact h6{
+    opacity: 0.9;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0px 0px 10px 0px;
+}

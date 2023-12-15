@@ -1,0 +1,167 @@
+.Card{
+    background-color: #fff;
+    border: 1px solid lightgray;
+    width: 300px;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0px 15px;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 5px 3px #eee;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    transition: 0.2s ease;
+}
+
+.Card:hover{
+    margin-top: -10px;
+    box-shadow: 1px 1px 10px 5px #ddd;;
+}
+
+.car__bestsellerheader{
+    margin-top: 30px;
+}
+.bestseller__banner{
+    background-color: #7b2cbf;
+    border-radius: 8px 8px 0px 0px;
+    color: white;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+}
+.Card-bestseller{
+    margin-top: -20px;
+    position: relative;
+    box-shadow: 1px 1px 10px 5px #ddd;
+}
+
+.bestseller__card__accordian_button{
+    color: #7b2cbf !important;
+}
+
+.Card-bestseller:hover{
+    margin-top: -30px;
+}
+.card__header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card__header h3{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card__header p{
+    margin-top: 0px;
+    text-align: center;
+    color: rgba(0,0,0,0.65);
+}
+
+.card__price{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.card__price button{
+    padding: 15px 15px;
+    width: 100%;
+    background-color: #0ead69;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    margin: 15px 0px;
+    transition: 0.8s ease;
+}
+
+.bestseller__button{
+    background-color: #7b2cbf !important;
+}
+
+.bestseller__button:hover{
+    background-color: #5a189a !important ;
+}
+.card__price button:hover{
+    background-color: #007f5f ;
+}
+
+.card__price .card__priceDiscount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card__price .card__priceDiscount p{
+    color: #aaa;
+    text-decoration:line-through;
+}
+
+.card__price h1{
+    margin-top: 0;
+    font-weight: 700;
+}
+
+.card__price h1 span{
+    font-size: 16px;
+    margin-left: -5px;
+}
+
+.bestseller__Discount{
+    background-color: #7b2cbf !important;
+}
+.card__price .card__priceDiscount h3{
+    padding: 10px;
+    width: 80px;
+    margin-left: 10px;
+    text-align: center;
+    opacity: 0.8;
+    background-color: #0ead69;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+
+}
+
+.card__features{
+    margin-top: 20px;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card__features li{
+    margin-bottom: 10px;
+    color: rgba(0,0,0,0.7);
+}
+
+.card__seperator{
+    background-color: lightgray;
+    height: 1px;
+    opacity: 0.6;
+    margin-top: 40px;
+    width: 80%;
+}
+
+.card__accordian_button{
+    color: #0ead69;
+    font-weight: 600;
+    display:flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card__accordian_button:hover{
+    text-decoration: underline;
+}
