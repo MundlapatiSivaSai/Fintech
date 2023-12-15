@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from 'react';
 import "./App.css";
 import Navbar from "./Components/Navbar";
 import Card from "./Components/Card";
@@ -5,7 +6,6 @@ import Footer from "./Components/Footer";
 import CardDetails from "./CardDetails";
 import Carousel from "./Components/Carousel";
 import "./animation.css";
-import {useEffect , useRef , useState} from "react";
 import Splash from "./Splash";
 
 const App = () => {
@@ -13,133 +13,111 @@ const App = () => {
   const aboutusdiv = useRef(null);
   const contactdiv = useRef(null);
   const whyusdiv = useRef(null);
-  const whyusdivheading = useRef(null);
   const pricedivheading = useRef(null);
+  const whyusdivheading = useRef(null);
+  const [isloading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        { ref: pricediv, offsetTop: "pricing" },
+        { ref: aboutusdiv, offsetTop: "customers-div" },
+        { ref: contactdiv, offsetTop: "contact-holder" },
+        { ref: whyusdiv, offsetTop: "whyusdiv" },
+        { ref: pricedivheading, offsetTop: "pricing" },
+        { ref: whyusdivheading, offsetTop: "whyusdiv" }
+      ];
 
-  const [isloading , setisloading] = useState(true);
+      sections.forEach(({ ref, offsetTop }) => {
+        const element = document.getElementById(offsetTop);
+        if (window.scrollY > element.offsetTop - 250 && ref.current) {
+          ref.current.style.opacity = '1';
+          ref.current.style.animation = 'fadein 1s ease';
+          ref.current.style.animationFillMode = 'forwards';
+        }
+      });
+    };
 
+    // Debounce the scroll event for performance improvement
+    const debounce = (func, delay) => {
+      let inDebounce;
+      return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(inDebounce);
+        inDebounce = setTimeout(() => func.apply(context, args), delay);
+      };
+    };
 
-  function getdivheights() {
-    var height1 = document.getElementById("pricing");
-    return height1;
-  }
-  window.addEventListener('scroll' , () => {
-    // console.log(pricediv.current)
+    window.addEventListener('scroll', debounce(handleScroll, 10));
 
-    var pricingDiv = document.getElementById("pricing");
-    var aboutDiv = document.getElementById("customers-div");
-    var contactDiv = document.getElementById("contact-holder");
-    var whyDiv = document.getElementById("whyusdiv");
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-
-    if (window.scrollY > pricingDiv.offsetTop - 250) {
-      if (pricediv.current){
-      pricediv.current.style.opacity = '1';
-      pricediv.current.style.animation = 'fadein 1s ease';
-      pricediv.current.style.animationFillMode = 'forwards';
-    }
-
-    if(pricedivheading.current){
-      pricedivheading.current.style.opacity = '1';
-      pricedivheading.current.style.animation = 'fadein 1s ease';
-      pricedivheading.current.style.animationFillMode = 'forwards';
-    }
-  }
-
-    if (window.scrollY > aboutDiv.offsetTop - 250) {
-      if (aboutusdiv.current){
-      aboutusdiv.current.style.opacity = '1';
-      aboutusdiv.current.style.animation = 'fadein 1s ease';
-      aboutusdiv.current.style.animationFillMode = 'forwards';
-    }
-  }  
-
-  if (window.scrollY > contactDiv.offsetTop - 250) {
-    if (contactdiv.current){
-    contactdiv.current.style.opacity = '1';
-    contactdiv.current.style.animation = 'fadein 1s ease';
-    contactdiv.current.style.animationFillMode = 'forwards';
-  }
-} 
-
-if (window.scrollY > whyDiv.offsetTop - 250) {
-  if (whyusdiv.current){
-  whyusdiv.current.style.opacity = '1';
-  whyusdiv.current.style.animation = 'fadein 1s ease';
-  whyusdiv.current.style.animationFillMode = 'forwards';
-}
-
-if(whyusdivheading.current){
-  whyusdivheading.current.style.opacity = '1';
-  whyusdivheading.current.style.animation = 'fadein 1s ease';
-  whyusdivheading.current.style.animationFillMode = 'forwards';
-}
-} 
-
-  })
-  
   useEffect(() => {
     setTimeout(() => {
-      setisloading(false);
-    } , 5600)
-  }, [])
+      setIsLoading(false);
+    }, 5600);
+  }, []);
 
-  return (<>
-  {
-    isloading ? <Splash/> :
+  return (
     <>
-      <Navbar />
-      <div className="App" id = "home">
-        <Carousel/>  
-        <h4 className="app_Header" id = "pricing" ref = {pricedivheading}>Choose the plan best suited for your use</h4>
-        <div className="app__cards" ref = {pricediv}>
-          {
-            CardDetails.map((item , index) => {
-              return <Card plan = {item} key = {index} cardnumber = {index + 1}/>
-            })
-          }
-        </div>
+      {isloading ? <Splash /> : (
+        <>
+          <Navbar />
+          <div className="App" id="home">
+            <Carousel />
+            <h4 className="app_Header" id="pricing" ref={pricedivheading}>
+              Choose the plan best suited for your use
+            </h4>
+            <div className="app__cards" ref={pricediv}>
+              {CardDetails.map((item, index) => (
+                <Card plan={item} key={index} cardnumber={index + 1} />
+              ))}
+            </div>
 
-        <div className="app__clients" id = "customers-div" ref = {aboutusdiv}>
-          <h4 className="app_Header" id = "customers">Our Customers</h4>
-          <p>
-            Get inspired by thousands of beautiful color schemes and make
-            something cool!
-          </p>
-          <div>
-            <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-bookingcom.png" />
-            <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-stripe.png" />
-            <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-vmware.png" />
-            <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-linkedin.png" />
-            <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-goldman-sachs.png" />
-          </div>
-        </div>
+            <div className="app__clients" id="customers-div" ref={aboutusdiv}>
+              <h4 className="app_Header" id="customers">Our Customers</h4>
+              <p>
+                Get inspired by thousands of beautiful color schemes and make
+                something cool!
+              </p>
+              <div>
+                {/* Ensure all images have alt attributes */}
+                <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-bookingcom.png" alt="Booking.com Logo" />
+                <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-stripe.png" alt="Stripe Logo" />
+                <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-vmware.png" alt="VMware Logo" />
+                <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-linkedin.png" alt="LinkedIn Logo" />
+                <img src="https://www.hackerrank.com/wp-content/uploads/2019/06/logo-icon-goldman-sachs.png" alt="Goldman Sachs Logo" />
+              </div>
+            </div>
 
         <h4 className="app_Header" id = "whyus" ref = {whyusdivheading}>Why choose us?</h4>
         <div className = "app__whatwedo" ref = {whyusdiv} id = "whyusdiv" >
           <div className = "app__whatwedoCard">
-            <img src = "https://investyadnya.in/static/assets/images/products/model-portfolio-graphic.png" />
+            <img src = "https://investyadnya.in/static/assets/images/products/model-portfolio-graphic.png" alt="Booking.com Logo" />
             <p>Ready made stocks and mutual find portfolio</p>
           </div>
           <div className = "app__whatwedoCard">
-            <img src = "https://investyadnya.in/static/assets/images/researched-products/invest-yadnya-block-icon.png" />
+            <img src = "https://investyadnya.in/static/assets/images/researched-products/invest-yadnya-block-icon.png" alt="Booking.com Logo" />
             <p>Ready made stocks and mutual find portfolio</p>
           </div>
           <div className = "app__whatwedoCard">
-            <img src = "https://investyadnya.in/static/assets/images/researched-products/mf-yadnya-block-icon.png" />
+            <img src = "https://investyadnya.in/static/assets/images/researched-products/mf-yadnya-block-icon.png" alt="Booking.com Logo" />
             <p>Ready made stocks and mutual find portfolio</p>
           </div>
           <div className = "app__whatwedoCard">
-            <img src = "https://investyadnya.in/static/assets/images/researched-products/tax-yadnya-block-icon.png" />
+            <img src = "https://investyadnya.in/static/assets/images/researched-products/tax-yadnya-block-icon.png" alt="Booking.com Logo" />
             <p>Ready made stocks and mutual find portfolio</p>
           </div>
           <div className = "app__whatwedoCard">
-            <img src = "https://investyadnya.in/static/assets/images/researched-products/fineplan-yadnya-block-icon.png" />
+            <img src = "https://investyadnya.in/static/assets/images/researched-products/fineplan-yadnya-block-icon.png" alt="Booking.com Logo" />
             <p>Ready made stocks and mutual find portfolio</p>
           </div>
           <div className = "app__whatwedoCard">
-            <img src = "https://investyadnya.in/static/assets/images/home-images/-e-ebook.png" />
+            <img src = "https://investyadnya.in/static/assets/images/home-images/-e-ebook.png" alt="Booking.com Logo" />
             <p>Ready made stocks and mutual find portfolio</p>
           </div>
         </div>
@@ -166,8 +144,8 @@ Let us help to find right plan for you
         <Footer/>
       </div>
     </>
-     
-  }
+      )
+  },
     </>
   );
 }
