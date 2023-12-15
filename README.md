@@ -12,20 +12,6 @@ The Tools used are:
 * [Netlify](https://www.netlify.com/ "Netlify") is used for deploying web app.
 
 
-## Prototype Images 
-
-**Home Screen**
-![Home Screen](prototype/home.jpg)
-
-**Profile**
-![Profile](prototype/profile.png)
-
-**Pricing Section**
-![Pricing Detail View](prototype/pricing.jpg)
-
-**Cards**
-![Cards](prototype/section.png)
-
 
 ## How to setup on local machine?
 
