@@ -2,7 +2,7 @@
 
 A Fintech Service Application, frontend design made using React, Material-Ui, JS and deployed on netlify.
 
-### View the project [here](https://fintech-ksb.netlify.app/ "here")
+### View the project [here](https://fintechbysiva.netlify.app/ "here")
 ## Tech Stack Used
 
 The Tools used are:
