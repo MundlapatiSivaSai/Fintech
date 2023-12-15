@@ -1,6 +1,5 @@
 import React from "react";
 import "./carousel.css";
-import banner from "../../banner.png";
 const Carousel = () => {
   return (
     <div className="carousel">
